@@ -50,10 +50,10 @@ class UltraclaritySpider(CrawlSpider):
     def parse_objects(self, response):
         sel = Selector(response)
         # We follow all divs with either id "law" or "law alt" according to the DOM of each page
-        paths = sel.xpath('//div[@class="law"] | //div[@class="law alt"]')
+        paths = sel.xpath('//div[@class="law clearfix"]')
         for paths in paths:
             item = UltraclarityItem()
-            title = paths.xpath('a[@class="title"]/text()').extract()
+            title = paths.xpath('a[@class="subject"]/text()').extract()
             # Construction of items title based on number, name and year of publication (e.g. 1_A_2015)
             item['title'] = title[0].split()[2].replace("/","_").replace(",","")+'_'+title[0].split()[3]      
             item['url'] = paths.xpath('a[@class="title"]/@href').extract()
