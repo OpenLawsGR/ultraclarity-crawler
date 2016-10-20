@@ -14,6 +14,6 @@ class UltraclarityPipeline(object):
         if not os.path.exists('laws/'+item['title'].split('_')[2]+'/'):
             os.makedirs('laws/'+item['title'].split('_')[2]+'/')
 
-        with open('laws/'+item['title'].split('_')[2]+'/'+item['title'], 'w') as f:
+        with open('laws/'+item['title'].split('_')[2]+'/'+item['title']+".pdf", 'wb') as f:
             f.write(item['desc'])
         return item
